@@ -3,8 +3,9 @@ package com.example.fitness_tracker
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -52,7 +53,7 @@ fun LogInScreen(navController: NavController) {
                 }
 
         )
-        // Заголовок "Вход"
+
         Text(
             text = stringResource(R.string.HeaderLogIn),
             modifier = Modifier.constrainAs(Header) {
@@ -68,6 +69,7 @@ fun LogInScreen(navController: NavController) {
                 textAlign = TextAlign.Center
             )
         )
+
         Image(painter = painterResource(id = R.drawable.welcome_screenimage),
             contentDescription = "",
             modifier = Modifier.constrainAs(Image) {
@@ -78,7 +80,7 @@ fun LogInScreen(navController: NavController) {
                 .height(250.dp),
             contentScale = ContentScale.Fit
         )
-        // Поле для ввода логина
+
         OutlinedTextField(
             value = login,
             onValueChange = { login = it },
@@ -90,7 +92,7 @@ fun LogInScreen(navController: NavController) {
                 width = Dimension.fillToConstraints
             }
         )
-        // Поле для ввода пароля с иконкой "показать/скрыть пароль"
+
         var passwordVisible1 by remember { mutableStateOf(false) }
         OutlinedTextField(
             value = password,
@@ -119,7 +121,8 @@ fun LogInScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(
                 Color(0xFF4b0af2), Color(0xFFfafafa)
             ),
-            modifier = Modifier.size(200.dp, 50.dp)
+            modifier = Modifier.fillMaxWidth().padding(start = 5.dp, end = 5.dp)
+                .height(45.dp)
                 .constrainAs(LogInButton) {
                     width = Dimension.fillToConstraints
                     top.linkTo(PassField.top, margin = 85.dp)
