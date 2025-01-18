@@ -19,4 +19,11 @@
     <string name="UserAgreement"> пользовательское соглашение</string>
     <string name="LogInButtonText">Войти</string>
     <string name="HeaderLogIn">Вход</string>
+    <string name="HeaderMyActivity">Моя</string>
+    <string name="HeaderUsersActivity">Пользователей</string>
+    <string name="Yesterday">Вчера</string>
+    <string name="May2022">Май 2022 года</string>
+    <string name="TabActivity">Активность</string>
+    <string name="TabProfile">Профиль</string>
+    <string name="Comment">Комментарий</string>
 </resources>

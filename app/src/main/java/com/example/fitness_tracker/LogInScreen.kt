@@ -116,7 +116,8 @@ fun LogInScreen(navController: NavController) {
             }
         )
         Button(
-            onClick = { },
+            //на данный момент для удобства, чтобы можно было как-то перейти к этому экрану
+            onClick = {navController.navigate(Routes.Activity) },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 Color(0xFF4b0af2), Color(0xFFfafafa)
