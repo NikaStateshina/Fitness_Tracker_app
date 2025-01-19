@@ -1,7 +1,6 @@
 package com.example.fitness_tracker
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
+import com.example.fitness_tracker.ui.theme.ArrowBackButton
 
 @Composable
 fun ActivityUserDetails(navController: NavController) {
@@ -50,12 +50,7 @@ fun ActivityUserDetails(navController: NavController) {
             },
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.arrow_back),
-                contentDescription = "Назад",
-                modifier = Modifier
-                    .clickable { navController.navigate(Routes.Activity) }
-            )
+            ArrowBackButton(navController, Routes.Activity)
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Серфинг",
@@ -154,8 +149,7 @@ fun ActivityUserDetails(navController: NavController) {
             modifier = Modifier.height(90.dp).constrainAs(BottomTab){
                 bottom.linkTo(parent.bottom)
             },
-
-            ) {
+        ){
             tabIcons.forEachIndexed { index, iconRes ->
                 Tab(
                     selected = selectedBottomTab == index,
@@ -177,6 +171,8 @@ fun ActivityUserDetails(navController: NavController) {
                 )
             }
         }
-
+        when (selectedBottomTab) {
+            1 -> ProfileScreen(navController)
+        }
     }
 }

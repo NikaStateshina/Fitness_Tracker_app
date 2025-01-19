@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
+import com.example.fitness_tracker.ui.theme.ArrowBackButton
 
 @Composable
 fun ActivityMyDetails(navController: NavController) {
@@ -53,12 +54,7 @@ fun ActivityMyDetails(navController: NavController) {
             },
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.arrow_back),
-                contentDescription = "Назад",
-                modifier = Modifier
-                    .clickable { navController.navigate(Routes.Activity) }
-            )
+            ArrowBackButton(navController, Routes.Activity)
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "Велосипед",
@@ -170,6 +166,9 @@ fun ActivityMyDetails(navController: NavController) {
                     }
                 )
             }
+        }
+        when (selectedBottomTab) {
+            1 -> ProfileScreen(navController)
         }
     }
 }

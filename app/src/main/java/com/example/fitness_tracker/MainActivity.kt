@@ -38,6 +38,8 @@ object Routes {
     const val Activity = "Activity"
     const val ActivityMyDetails = "ActivityMyDetails"
     const val ActivityUserDetails = "ActivityUserDetails"
+    const val ProfileScreen = "ProfileScreen"
+    const val ChangePassScreen = "ChangePassScreen"
 }
 
 
@@ -78,6 +80,12 @@ fun MainApp() {
         }
         composable(Routes.ActivityUserDetails){
             ActivityUserDetails(navController)
+        }
+        composable(Routes.ProfileScreen){
+            ProfileScreen(navController)
+        }
+        composable(Routes.ChangePassScreen){
+            ChangePassScreen(navController)
         }
     }
 }

@@ -17,9 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,28 +33,24 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.fitness_tracker.ui.theme.ArrowBackButton
+import com.example.fitness_tracker.ui.theme.LoginNicknameTextbox
+import com.example.fitness_tracker.ui.theme.PasswordTextbox
 
 @Composable
 fun RegistrationScreen(navController: NavController) {
     val scrollState = rememberScrollState()
-    var login by remember { mutableStateOf("") }
-    var name by remember { mutableStateOf("") }
-    var password1 by remember { mutableStateOf("") }
-    var password2 by remember { mutableStateOf("") }
     var isMaleSelected by remember { mutableStateOf(false) }
     var isFemaleSelected by remember { mutableStateOf(false) }
     var isOtherSelected by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
     ) {
         Column(
             modifier = Modifier
@@ -67,13 +60,12 @@ fun RegistrationScreen(navController: NavController) {
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().padding(top = 40.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 40.dp, start = 16.dp, end = 16.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.arrow_back),
-                    contentDescription = "Назад",
-                    modifier = Modifier
-                        .clickable { navController.navigate(Routes.GreetingPreview) }
+                ArrowBackButton(navController, Routes.GreetingPreview,
+                    modifier = Modifier.padding(),
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
@@ -88,59 +80,39 @@ fun RegistrationScreen(navController: NavController) {
                 )
             }
 
-
-            OutlinedTextField(
-                value = login,
-                onValueChange = { login = it },
-                label = { Text(stringResource(R.string.Login)) },
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            LoginNicknameTextbox(
+                modifier = Modifier
+                    .fillMaxWidth() // Полная ширина
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp), // Отступы только для поля
+                R.string.Login
             )
 
-            // Поле для ввода имени
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text(stringResource(R.string.Nickname)) },
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            LoginNicknameTextbox(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp, start = 16.dp, end = 16.dp),
+                R.string.Nickname
             )
 
-            var PasswordWindow1 by remember { mutableStateOf(false) }
-            OutlinedTextField(
-                value = password1,
-                onValueChange = { password1 = it },
-                label = { Text(stringResource(R.string.Pass1)) },
-                visualTransformation = if (PasswordWindow1) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    IconButton(onClick = { PasswordWindow1 = !PasswordWindow1 }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.eye),
-                            contentDescription = null
-                        )
-                    }
-                },
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            PasswordTextbox(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp, start = 16.dp, end = 16.dp),
+                R.string.Pass1
             )
 
-            var PasswordWindow2 by remember { mutableStateOf(false) }
-            OutlinedTextField(
-                value = password2,
-                onValueChange = { password2 = it },
-                label = { Text(stringResource(R.string.Pass2)) },
-                visualTransformation = if (PasswordWindow2) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    IconButton(onClick = { PasswordWindow2 = !PasswordWindow2 }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.eye),
-                            contentDescription = null
-                        )
-                    }
-                },
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            PasswordTextbox(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp, start = 16.dp, end = 16.dp),
+                R.string.Pass2
             )
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(15.dp),
-                modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp) // Отступы для всего блока
             ) {
                 Text(
                     text = stringResource(R.string.Sex),
@@ -214,7 +186,9 @@ fun RegistrationScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(
                     Color(0xFF4b0af2), Color(0xFFfafafa)
                 ),
-                modifier = Modifier.fillMaxWidth().padding(top = 20.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp, start = 16.dp, end = 16.dp) // Отступы для кнопки
                     .height(45.dp)
             ) {
                 Text(
@@ -222,6 +196,7 @@ fun RegistrationScreen(navController: NavController) {
                     style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 )
             }
+
             val part1 = stringResource(R.string.AgreementTextPart1)
             val privacyPolicy = stringResource(R.string.PrivacyPolicy)
             val part2 = stringResource(R.string.AgreementTextPart2)
@@ -243,10 +218,13 @@ fun RegistrationScreen(navController: NavController) {
                 text = annotatedString,
                 style = TextStyle(fontSize = 12.sp, lineHeight = 20.sp),
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 20.dp)
+                modifier = Modifier
+                    .fillMaxWidth() // Растягиваем текст на всю ширину
+                    .padding(top = 20.dp, start = 16.dp, end = 16.dp) // Отступы для текста
             )
         }
     }
+
 }
 
 

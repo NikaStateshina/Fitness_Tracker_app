@@ -161,7 +161,6 @@ fun Activity(navController: NavController) {
                                 painter = painterResource(id = iconRes),
                                 contentDescription = null,
                                 modifier = Modifier.size(24.dp)
-
                             )
                             Text(
                                 text = if (index == 0) stringResource(R.string.TabActivity) else stringResource(R.string.TabProfile),
@@ -169,9 +168,13 @@ fun Activity(navController: NavController) {
                                 fontSize = 12.sp
                             )
                         }
-                    }
+                    },
+
                 )
             }
+            when (selectedBottomTab) {
+            1 -> ProfileScreen(navController)
+        }
         }
     }
 }
