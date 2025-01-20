@@ -26,4 +26,14 @@
     <string name="TabActivity">Активность</string>
     <string name="TabProfile">Профиль</string>
     <string name="Comment">Комментарий</string>
+    <string name="Save">Сохранить</string>
+    <string name="ChangePass">Изменить пароль</string>
+    <string name="Exit">Выйти</string>
+    <string name="OldPass">Старый пароль</string>
+    <string name="NewPass">Новый пароль</string>
+    <string name="Accept">Принять</string>
+    <string name="LetsGo">Погнали? :)</string>
+    <string name="Velo">Велосипед</string>
+    <string name="Run">Бег</string>
+    <string name="Walk">Ходьба</string>
 </resources>

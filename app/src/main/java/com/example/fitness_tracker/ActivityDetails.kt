@@ -149,7 +149,14 @@ fun ActivityMyDetails(navController: NavController) {
             tabIcons.forEachIndexed { index, iconRes ->
                 Tab(
                     selected = selectedBottomTab == index,
-                    onClick = { selectedBottomTab = index },
+                    onClick = {
+                        selectedBottomTab = index
+                        if (index == 0) {
+                            navController.navigate(Routes.Activity)
+                        } else if (index == 1) {
+                            navController.navigate(Routes.ProfileScreen)
+                        }
+                    },
                     text = {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Image(
@@ -166,9 +173,6 @@ fun ActivityMyDetails(navController: NavController) {
                     }
                 )
             }
-        }
-        when (selectedBottomTab) {
-            1 -> ProfileScreen(navController)
         }
     }
 }

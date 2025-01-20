@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -131,7 +129,7 @@ fun Activity(navController: NavController) {
                 .size(80.dp)
                 .clip(CircleShape)
                 .clickable {
-                    navController.navigate("GreetingPreview")
+                    navController.navigate("NewActivity")
                 }
                 .constrainAs(goButton) {
                     bottom.linkTo(tabRowBottom.bottom, 90.dp)
@@ -154,7 +152,14 @@ fun Activity(navController: NavController) {
             tabIcons.forEachIndexed { index, iconRes ->
                 Tab(
                     selected = selectedBottomTab == index,
-                    onClick = { selectedBottomTab = index },
+                    onClick = {
+                        selectedBottomTab = index
+                        if (index == 0) {
+                            navController.navigate(Routes.Activity)
+                        } else if (index == 1) {
+                            navController.navigate(Routes.ProfileScreen)
+                        }
+                    },
                     text = {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Image(
@@ -169,12 +174,8 @@ fun Activity(navController: NavController) {
                             )
                         }
                     },
-
                 )
             }
-            when (selectedBottomTab) {
-            1 -> ProfileScreen(navController)
-        }
         }
     }
 }

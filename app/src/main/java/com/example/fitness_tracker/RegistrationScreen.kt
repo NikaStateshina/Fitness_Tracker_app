@@ -82,8 +82,8 @@ fun RegistrationScreen(navController: NavController) {
 
             LoginNicknameTextbox(
                 modifier = Modifier
-                    .fillMaxWidth() // Полная ширина
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp), // Отступы только для поля
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
                 R.string.Login
             )
 
@@ -112,7 +112,7 @@ fun RegistrationScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(15.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp) // Отступы для всего блока
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp)
             ) {
                 Text(
                     text = stringResource(R.string.Sex),
@@ -188,7 +188,7 @@ fun RegistrationScreen(navController: NavController) {
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp, start = 16.dp, end = 16.dp) // Отступы для кнопки
+                    .padding(top = 20.dp, start = 16.dp, end = 16.dp)
                     .height(45.dp)
             ) {
                 Text(
@@ -219,8 +219,8 @@ fun RegistrationScreen(navController: NavController) {
                 style = TextStyle(fontSize = 12.sp, lineHeight = 20.sp),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth() // Растягиваем текст на всю ширину
-                    .padding(top = 20.dp, start = 16.dp, end = 16.dp) // Отступы для текста
+                    .fillMaxWidth()
+                    .padding(top = 20.dp, start = 16.dp, end = 16.dp)
             )
         }
     }
