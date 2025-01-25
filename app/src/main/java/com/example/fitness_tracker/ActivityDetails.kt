@@ -63,12 +63,12 @@ fun ActivityMyDetails(navController: NavController) {
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         Image(
-                            painter = painterResource(id = R.drawable.ic_delete),
+                            painter = painterResource(id = R.drawable.deleteicon),
                             contentDescription = "Удалить"
                         )
                         Spacer(modifier = Modifier.width(16.dp))
                         Image(
-                            painter = painterResource(id = R.drawable.ic_share),
+                            painter = painterResource(id = R.drawable.shareicon),
                             contentDescription = "Поделиться"
                         )
                     }
@@ -94,7 +94,7 @@ fun ActivityMyDetails(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            } /*else if (index == 1) {
+                            } else if (index == 1) {
                                 navController.navigate(Routes.ProfileScreen) {
                                     popUpTo(navController.graph.startDestinationId){
                                         saveState = true
@@ -102,7 +102,7 @@ fun ActivityMyDetails(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            }*/
+                            }
                         },
                         icon = {
                             Image(

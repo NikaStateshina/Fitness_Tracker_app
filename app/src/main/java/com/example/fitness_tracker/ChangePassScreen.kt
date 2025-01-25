@@ -38,8 +38,8 @@ import com.example.fitness_tracker.ui.theme.PasswordTextbox
 @Composable
 fun ChangePassScreen(navController: NavController){
     val tabIcons = listOf(
-        R.drawable.sportsnonselected,
-        R.drawable.personselected
+        R.drawable.ic_sports_non_selected,
+        R.drawable.ic_person_selected
     )
 
     var selectedBottomTab by remember { mutableStateOf(1) }

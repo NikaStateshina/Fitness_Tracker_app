@@ -2,7 +2,6 @@ package com.example.fitness_tracker.ui.theme
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -17,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
 import com.example.fitness_tracker.R
 
 @Composable
@@ -33,7 +31,7 @@ fun PasswordTextbox(modifier: Modifier = Modifier, @StringRes labelResId: Int){
         trailingIcon = {
             IconButton(onClick = { PasswordWindow = !PasswordWindow }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.eye),
+                    painter = painterResource(id = R.drawable.ic_eye),
                     contentDescription = null
                 )
             }

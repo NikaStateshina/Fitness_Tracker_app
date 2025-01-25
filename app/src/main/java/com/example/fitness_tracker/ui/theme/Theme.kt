@@ -29,7 +29,7 @@ private val LightColorScheme = lightColorScheme(
     tertiary = Color(0xFFFFFFFF),
     onBackground = Color(0xFFFFFFFF),
 
-    )
+)
 
 val TextHeaderStyle: TextStyle
     get() = TextStyle(
