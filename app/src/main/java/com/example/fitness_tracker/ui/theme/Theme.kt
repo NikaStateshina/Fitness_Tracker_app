@@ -11,6 +11,11 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -24,16 +29,16 @@ private val LightColorScheme = lightColorScheme(
     tertiary = Color(0xFFFFFFFF),
     onBackground = Color(0xFFFFFFFF),
 
-    /* Other default colors to override
+    )
 
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
+val TextHeaderStyle: TextStyle
+    get() = TextStyle(
+        fontFamily = FontFamily.SansSerif,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color(0xFF101010),
+        textAlign = TextAlign.Start
+    )
 
 @Composable
 fun Fitness_TrackerTheme(
@@ -57,4 +62,6 @@ fun Fitness_TrackerTheme(
         typography = Typography,
         content = content
     )
+
+
 }
