@@ -100,7 +100,7 @@ fun LogInScreen(navController: NavController) {
             label = { Text(stringResource(R.string.Pass1)) },
             visualTransformation = if (passwordVisible1) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = R.drawable.eye
+                val image = R.drawable.ic_eye
                 IconButton(onClick = { passwordVisible1 = !passwordVisible1 }) {
                     Icon(
                         painter = painterResource(id = image),
@@ -116,7 +116,8 @@ fun LogInScreen(navController: NavController) {
             }
         )
         Button(
-            onClick = { },
+            //на данный момент для удобства, чтобы можно было как-то перейти к этому экрану
+            onClick = {navController.navigate(Routes.Activity) },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 Color(0xFF4b0af2), Color(0xFFfafafa)

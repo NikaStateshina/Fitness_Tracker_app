@@ -113,7 +113,7 @@ fun RegistrationScreen(navController: NavController) {
                 trailingIcon = {
                     IconButton(onClick = { PasswordWindow1 = !PasswordWindow1 }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.eye),
+                            painter = painterResource(id = R.drawable.ic_eye),
                             contentDescription = null
                         )
                     }
@@ -130,7 +130,7 @@ fun RegistrationScreen(navController: NavController) {
                 trailingIcon = {
                     IconButton(onClick = { PasswordWindow2 = !PasswordWindow2 }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.eye),
+                            painter = painterResource(id = R.drawable.ic_eye),
                             contentDescription = null
                         )
                     }

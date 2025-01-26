@@ -40,10 +40,10 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.compose.ui:ui:1.x.x")           // Основной модуль UI
-    implementation ("androidx.compose.ui:ui-text:1.x.x")     // Работа с текстом
-    implementation ("androidx.compose.material:material:1.x.x") // Material Components
-    implementation ("androidx.compose.ui:ui-tooling:1.x.x")  // Инструменты
+    implementation ("androidx.compose.ui:ui:1.x.x")
+    implementation ("androidx.compose.ui:ui-text:1.x.x")
+    implementation ("androidx.compose.material:material:1.x.x")
+    implementation ("androidx.compose.ui:ui-tooling:1.x.x")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
