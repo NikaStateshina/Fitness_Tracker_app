@@ -38,8 +38,8 @@ import androidx.navigation.NavController
 @Composable
 fun ActivityMyDetails(navController: NavController) {
     val tabIcons = listOf(
-        R.drawable.sportsselected,
-        R.drawable.personnonselected
+        R.drawable.ic_sports_selected,
+        R.drawable.ic_person_non_selected
     )
 
     var selectedBottomTab by remember { mutableStateOf(0) }
@@ -72,12 +72,12 @@ fun ActivityMyDetails(navController: NavController) {
                 modifier = Modifier.padding(start = 20.dp)
             )
             Image(
-                painter = painterResource(id = R.drawable.deleteicon),
+                painter = painterResource(id = R.drawable.ic_delete),
                 contentDescription = "Удалить",
                 modifier = Modifier.padding(start = 150.dp)
             )
             Image(
-                painter = painterResource(id = R.drawable.shareicon),
+                painter = painterResource(id = R.drawable.ic_share),
                 contentDescription = "Поделиться",
                 modifier = Modifier.padding(start = 20.dp)
             )

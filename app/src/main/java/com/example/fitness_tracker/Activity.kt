@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -67,8 +65,8 @@ fun Activity(navController: NavController) {
         stringResource(R.string.HeaderUsersActivity)
     )
     val tabIcons = listOf(
-        R.drawable.sportsselected,
-        R.drawable.personnonselected
+        R.drawable.ic_sports_selected,
+        R.drawable.ic_person_non_selected
     )
 
     ConstraintLayout(
