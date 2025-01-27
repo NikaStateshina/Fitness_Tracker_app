@@ -94,7 +94,7 @@ fun ActivityMyDetails(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            } /*else if (index == 1) {
+                            } else if (index == 1) {
                                 navController.navigate(Routes.ProfileScreen) {
                                     popUpTo(navController.graph.startDestinationId){
                                         saveState = true
@@ -102,7 +102,7 @@ fun ActivityMyDetails(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            }*/
+                            }
                         },
                         icon = {
                             Image(

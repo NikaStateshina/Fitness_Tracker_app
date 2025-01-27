@@ -27,7 +27,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.fitness_tracker.Routes.Activity
 import com.example.fitness_tracker.ui.theme.Fitness_TrackerTheme
 
 
@@ -38,6 +37,9 @@ object Routes {
     const val Activity = "Activity"
     const val ActivityMyDetails = "ActivityMyDetails"
     const val ActivityUserDetails = "ActivityUserDetails"
+    const val ProfileScreen = "ProfileScreen"
+    const val ChangePassScreen = "ChangePassScreen"
+    const val NewActivity = "NewActivity"
 }
 
 
@@ -78,6 +80,15 @@ fun MainApp() {
         }
         composable(Routes.ActivityUserDetails){
             ActivityUserDetails(navController)
+        }
+        composable(Routes.ProfileScreen){
+            ProfileScreen(navController)
+        }
+        composable(Routes.ChangePassScreen){
+            ChangePassScreen(navController)
+        }
+        composable(Routes.NewActivity){
+            NewActivity(navController)
         }
     }
 }

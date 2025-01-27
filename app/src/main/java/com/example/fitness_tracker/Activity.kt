@@ -107,7 +107,7 @@ fun Activity(navController: NavController) {
                 tabIcons.forEachIndexed { index, iconRes ->
                     BottomNavigationItem(
                         selected = selectedBottomTab == index,
-                       onClick = {
+                        onClick = {
                             selectedBottomTab = index
                             if (index == 0) {
                                 navController.navigate(Routes.Activity) {
@@ -117,7 +117,7 @@ fun Activity(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            } /*else if (index == 1) {
+                            } else if (index == 1) {
                                 navController.navigate(Routes.ProfileScreen){
                                     popUpTo(navController.graph.startDestinationId){
                                         saveState = true
@@ -125,7 +125,7 @@ fun Activity(navController: NavController) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            }*/
+                            }
                         },
                         icon = {
                             Image(
@@ -162,7 +162,7 @@ fun Activity(navController: NavController) {
                     painter = painterResource(id = R.drawable.gobutton),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(180.dp)
                         .clip(CircleShape)
                         .clickable {
                             navController.navigate("NewActivity")
@@ -212,7 +212,7 @@ fun VerticalListForItems(items: List<Any>,
                                 if (item == R.drawable.userserfing) {
                                     navController.navigate("ActivityUserDetails")
                                 }
-                            },
+                                },
 
                         shape = RoundedCornerShape(8.dp),
                         elevation = 4.dp

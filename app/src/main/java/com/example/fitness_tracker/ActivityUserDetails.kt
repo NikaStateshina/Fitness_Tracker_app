@@ -60,12 +60,12 @@ fun ActivityUserDetails(navController: NavController) {
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         Image(
-                            painter = painterResource(id = R.drawable.deleteicon),
+                            painter = painterResource(id = R.drawable.ic_delete),
                             contentDescription = "Удалить"
                         )
                         Spacer(modifier = Modifier.width(16.dp))
                         Image(
-                            painter = painterResource(id = R.drawable.shareicon),
+                            painter = painterResource(id = R.drawable.ic_share),
                             contentDescription = "Поделиться"
                         )
                     }
