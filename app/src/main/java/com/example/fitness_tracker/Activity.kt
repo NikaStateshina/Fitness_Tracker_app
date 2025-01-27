@@ -162,7 +162,7 @@ fun Activity(navController: NavController) {
                     painter = painterResource(id = R.drawable.gobutton),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(180.dp)
                         .clip(CircleShape)
                         .clickable {
                             navController.navigate("NewActivity")

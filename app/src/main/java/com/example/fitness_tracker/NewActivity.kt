@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.Box
@@ -34,11 +33,17 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
-import com.example.fitness_tracker.ui.theme.ArrowBackButton
+import com.example.fitness_tracker.ui.theme.TextHeaderStyle
 
 @Composable
 fun NewActivityWithBackground(navController: NavController) {
@@ -54,8 +59,8 @@ fun NewActivityWithBackground(navController: NavController) {
 
 @Composable
 fun NewActivity(navController: NavController){
-        var selectedActivityIndex by remember { mutableStateOf(0) }
-        var isActivityStarted by remember { mutableStateOf(false) }
+        var selectedActivityIndex by rememberSaveable { mutableStateOf(0) }
+        var isActivityStarted by rememberSaveable { mutableStateOf(false) }
         val activities = listOf(
             "Велосипед" to R.drawable.welcome_screenimage,
             "Бег" to R.drawable.welcome_screenimage,
@@ -91,166 +96,184 @@ fun ActivitySelectionBottomBar(
     onStartActivity: () -> Unit,
     navController: NavController
 ) {
-    ConstraintLayout(modifier = Modifier.fillMaxSize()){
-        val (arrowBack, BottomTab) = createRefs()
-
-        ArrowBackButton(navController,
-            Routes.Activity,
-            modifier = Modifier.constrainAs(arrowBack){
-                start.linkTo(parent.start, margin = 10.dp)
-                top.linkTo(parent.top, margin = 40.dp)
-            }
-        )
-
-        Column(
-            modifier = Modifier
-                .background(Color.White)
-                .padding(16.dp)
-                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-                .constrainAs(BottomTab) {
-                bottom.linkTo(parent.bottom, 10.dp)
-            },
-        ) {
-            Text(
-                text = stringResource(R.string.LetsGo),
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                ),
-                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                backgroundColor = Color.White,
+                elevation = 0.dp,
+                title = { },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Назад"
+                        )
+                    }
+                }
             )
-
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.fillMaxWidth()
+        },
+        content = { paddingValues ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .background(Color.White),
+                contentAlignment = Alignment.BottomCenter
             ) {
-                itemsIndexed(activities) { index, activity ->
-                    val isSelected = selectedActivityIndex == index
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(8.dp))
-                            .border(
-                                width = if (isSelected) 2.dp else 1.dp,
-                                color = if (isSelected) Color(0xFF4B09F3) else Color.LightGray,
-                                shape = RoundedCornerShape(8.dp)
-                            )
-                            .clickable { onActivitySelected(index) }
-                            .padding(16.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(16.dp)
+                        .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                ) {
+                    Text(
+                        text = stringResource(R.string.LetsGo),
+                        style = TextHeaderStyle,
+                        modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+                    )
+
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Image(
-                                painter = painterResource(id = activity.second),
-                                contentDescription = activity.first,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = activity.first,
-                                style = TextStyle(
-                                    fontSize = 16.sp,
-                                )
-                            )
+                        itemsIndexed(activities) { index, activity ->
+                            val isSelected = selectedActivityIndex == index
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .border(
+                                        width = if (isSelected) 2.dp else 1.dp,
+                                        color = if (isSelected) Color(0xFF4B09F3) else Color.LightGray,
+                                        shape = RoundedCornerShape(8.dp)
+                                    )
+                                    .clickable { onActivitySelected(index) }
+                                    .padding(16.dp)
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = activity.second),
+                                        contentDescription = activity.first,
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = activity.first,
+                                        style = TextStyle(
+                                            fontSize = 16.sp,
+                                        )
+                                    )
+                                }
+                            }
                         }
+                    }
+
+                    Button(
+                        onClick = onStartActivity,
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color(0xFF4B09F3),
+                            contentColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp)
+                            .height(50.dp)
+                    ) {
+                        Text(
+                            text = "Начать",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                        )
                     }
                 }
             }
+        }
+    )
+}
 
-            Button(
-                onClick = onStartActivity,
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color(0xFF4B09F3),
-                    contentColor = Color.White
-                ),
+
+    @Composable
+    fun ActivityInProgressScreen(activityName: String, navController: NavController) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                backgroundColor = Color.White,
+                title = { Text(text = activityName) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Назад"
+                        )
+                    }
+                }
+            )
+        },
+        content = { paddingValues ->
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp)
-                    .height(50.dp)
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.BottomCenter
             ) {
-                Text(
-                    text = "Начать",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.White)
+                        .padding(16.dp)
+                        .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Text(
+                                text = activityName,
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                ),
+                                modifier = Modifier.padding(bottom = 16.dp, start = 16.dp)
+                            )
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text(
+                                text = "14 км",
+                                style = TextStyle(
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+                            )
+                            Text(
+                                text = "00:01:46",
+                                style = TextStyle(
+                                    fontSize = 16.sp,
+                                    color = Color.Black
+                                )
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Image(
+                            painter = painterResource(R.drawable.finishbutton),
+                            contentDescription = "Назад",
+                        )
+                    }
+                }
             }
         }
-    }
+    )
 }
 
-
-
-@Composable
-fun ActivityInProgressScreen(activityName: String, navController: NavController) {
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (arrowBack, BottomTab) = createRefs()
-
-        ArrowBackButton(navController,
-            Routes.Activity,
-            modifier = Modifier.constrainAs(arrowBack){
-                start.linkTo(parent.start, margin = 10.dp)
-                top.linkTo(parent.top, margin = 40.dp)
-            }
-        )
-
-        Box(
-            modifier = Modifier.constrainAs(BottomTab){
-                bottom.linkTo(parent.bottom, 10.dp)
-            }
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(16.dp)
-                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))                ,
-            contentAlignment = Alignment.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    Text(
-                        text = activityName,
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        ),
-                        modifier = Modifier.padding(bottom = 16.dp, start = 16.dp)
-                    )
-                }
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "14 км",
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            color = Color.Black
-                        )
-                    )
-                    Text(
-                        text = "00:01:46",
-                        style = TextStyle(
-                            fontSize = 16.sp,
-                            color = Color.Black
-                        )
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Image(
-                    painter = painterResource(R.drawable.finishbutton),
-                    contentDescription = "Назад",
-                )
-            }
-        }
-    }
-}
 
